@@ -23,6 +23,18 @@ namespace PruebaInnovatioStrategies
             Name = name;
             LastName = lastName;
             Point = point;
+            listVehicles = new List<vehicle>();
+        }
+
+        public Driver(string dni, string name, string lastName, int point, vehicle v)
+        {
+            DNI = dni;
+            Name = name;
+            LastName = lastName;
+            Point = point;
+            listVehicles = new List<vehicle>();
+
+            this.addVehicle(v);
         }
 
         public string GetFullName()

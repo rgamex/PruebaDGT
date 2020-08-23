@@ -1,6 +1,6 @@
 ﻿namespace PruebaInnovatioStrategies
 {
-    public class Offenses
+    public class TrafficTicket
     {
         public int Id { get; set; }
 
@@ -8,7 +8,7 @@
 
         public int DecreasePoint { get; set; }
 
-        public Offenses(int id, string description, int decreasePoint)
+        public TrafficTicket(int id, string description, int decreasePoint)
         {
             Id = id;
             Description = description;

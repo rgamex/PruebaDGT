@@ -11,7 +11,7 @@
   <Class Name="PruebaInnovatioStrategies.vehicle">
     <Position X="2" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAgAAAAFAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAgAAAAFAAA=</HashCode>
       <FileName>vehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -19,10 +19,10 @@
     <Position X="4.25" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
-      <FileName>Penalty.cs</FileName>
+      <FileName>TrafficTicket.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PruebaInnovatioStrategies.RegistryPenalty">
+  <Class Name="PruebaInnovatioStrategies.RegistryTrafficTickets">
     <Position X="7.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAAEAQAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>

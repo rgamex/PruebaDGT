@@ -1,64 +1,57 @@
-﻿using System;
+﻿using PruebaInnovatioStrategies.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace PruebaInnovatioStrategies.Controllers
 {
     public class VehicleController : ApiController
     {
-        public List<vehicle> ListVehicles = new List<vehicle>
-        {
-            new vehicle("7060GFD", "Renault", "Clio"),
-            new vehicle("8960GTY", "Mercedes", "Clase C"),
-            new vehicle("4561DGT", "Audi", "A3"),
-            new vehicle("2645TRE", "Hyundai", "I30"),
-        };
+
         // GET: Vehicle
-        public List<vehicle> Get()
+        [HttpGet]
+        public List<vehicle> GetVehicles()
         {
-            return ListVehicles ;
+            RpVehicles rpVehicles = new RpVehicles();
+            return rpVehicles.GetVehicles();
         }
 
-        public vehicle Get(string registration)
+        [HttpGet]
+        public vehicle GetVehicle(string registration)
         {
-            return ListVehicles.Find(vehicle => vehicle.Registration == registration);
+            RpVehicles rpVehicles = new RpVehicles();
+            return rpVehicles.GetVehicle(registration);
         }
 
-        public bool Post(string registration, string brand, string model, string dni)
+        [HttpPost]
+        public bool AddVehicleToDrive(string registration, string brand, string model, string dni)
         {
-            DriversController controlDriver = new DriversController();
-            if (!(checkExistVehicle(registration)) && (controlDriver.checkExistDNI(dni)))
+            RpVehicles rpVehicle = new RpVehicles();
+            RpDrivers rpDrivers = new RpDrivers();
+            try
             {
-                try
+                //TODO Validar matrícula antes de agregar el vehículo rpVehicle.AddVehicle
+                if (!rpVehicle.checkExistVehicle(registration) && rpDrivers.checkExistDNI(dni))
                 {
-                    Driver conductor = controlDriver.Get(dni);
-                    vehicle car = new vehicle(registration, brand, model);
-                    if (conductor.addVehicle(car)) {
-                        ListVehicles.Add(car);
-                    } else
-                    {
-                        throw new Exception();
-                    }                 
+                        Driver conductor = rpDrivers.GetDriver(dni);
+                        vehicle car = new vehicle(registration, brand, model);
+                        if (rpVehicle.AddVehicle(car)) {
+                            return conductor.addVehicle(car);
+                        } else
+                        {
+                            throw new Exception();
+                        }                 
                 }
-                catch (Exception ex)
+                else
                 {
                     return false;
                 }
-
-                return true;
-            }
-            else
+            } catch (Exception ex)
             {
                 return false;
             }
-        }
-
-        public bool checkExistVehicle(string registration)
-        {
-            return (ListVehicles.Find(vehicle => vehicle.Registration == registration)) != null;
         }
     }
 }
